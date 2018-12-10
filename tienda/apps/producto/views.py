@@ -47,7 +47,7 @@ def producto_edit(request, id_producto):
             form = ProductoForm(request.POST, instance=producto)
             if form.is_valid():
                 form.save()
-            return redirect('producto_listar')
+            return redirect('producto:producto_listar')
         return render(request,'producto/producto_form.html',{'form':form})
     else:
         return HttpResponseNotFound('<h1>Página no encontrada o no tienes los suficientes permisos para entrar a ella :(</h1>')
@@ -59,7 +59,7 @@ def producto_delete(request, id_producto):
         producto = Producto.objects.get(id=id_producto)
         if request.method == 'POST':
             producto.delete()
-            return redirect('producto_listar')
+            return redirect('producto:producto_listar')
         return render(request,'producto/producto_delete.html', {'producto':producto})
     else:
         return HttpResponseNotFound('<h1>Página no encontrada o no tienes los suficientes permisos para entrar a ella :(</h1>')

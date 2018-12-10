@@ -43,8 +43,8 @@ def sucursal_edit(request, id_sucursal):
             form = SucursalForm(request.POST, instance=sucursal)
             if form.is_valid():
                 form.save()
-            return redirect('sucursal_listar')
-        return render(request,'sucursal/sucursal_form.html',{'form':form})
+            return redirect('sucursal:sucursal_listar')
+        return render(request,'sucursal/sucursal_form.html', {'form':form})
     else:
         return HttpResponseNotFound('<h1>Página no encontrada o no tienes los suficientes permisos para entrar a ella :(</h1>')
 
@@ -55,7 +55,7 @@ def sucursal_delete(request, id_sucursal):
         sucursal = Sucursal.objects.get(id=id_sucursal)
         if request.method == 'POST':
             sucursal.delete()
-            return redirect('sucursal_listar')
+            return redirect('sucursal:sucursal_listar')
         return render(request,'sucursal/sucursal_delete.html', {'sucursal':sucursal})
     else:
         return HttpResponseNotFound('<h1>Página no encontrada o no tienes los suficientes permisos para entrar a ella :(</h1>')
