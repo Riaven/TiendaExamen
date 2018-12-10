@@ -26,8 +26,8 @@
         <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
         {% endif %}
         {% if user.is_authenticated %} 
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Sucursales</a></li>
+        <li><a href="{% url 'producto:producto_listar' %}">Productos</a></li>
+        <li><a href="{% url 'sucursal:sucursal_listar' %}">Sucursales</a></li>
         <li><a href="#">Ventas</a></li>
         <li><a href="{% url 'registrar' %}">Usuarios</a></li>
         <li><a href="{% url 'logout' %}">Salir</a></li>

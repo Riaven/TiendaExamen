@@ -132,8 +132,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # después que el usuario se indentifica se le envía a la pantalla de inicio
-LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_REDIRECT_URL = reverse_lazy('producto:index')
 
 
 #  cuando el usuario selecciona salir de su cuenta este será enviado a la pantalla de inicio del sistema
-LOGOUT_REDIRECT_URL = reverse_lazy('index')
+LOGOUT_REDIRECT_URL = reverse_lazy('producto:index')
