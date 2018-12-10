@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load materializecss %}
+{% load staticfiles %}
+
+{% block title %} Eliminar {{producto.nombre}} {% endblock %}
+
+{% block content %}
+  
+  <div class="container">
+    <div class="row center">
+        <form method="post">
+            {% csrf_token %}
+            <h3>¿Desea eliminar el registro de {{ producto.nombre }}?</h3>
+
+            <button class="btn waves-effect waves-light red" type="submit">Sí, eliminar</button>
+            <a class="btn waves-effect waves-light blue" href="{% url 'producto:producto_listar' %}">Cancelar</a>
+        </form>
+
+    </div>
+   <br><br><br>
+  </div>
+
+ {% endblock %}

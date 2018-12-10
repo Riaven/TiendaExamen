@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load materializecss %}
+
+{% block title %} ELIMINAR SUCURSAL {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row center">
+        <form method="post">
+            {% csrf_token %}
+            <h3>¿Desea eliminar el registro de {{ sucursal.nombre }}?</h3>
+
+            <button class="btn waves-effect waves-light red" type="submit">Sí, eliminar</button>
+            <a class="btn waves-effect waves-light blue" href="{% url 'sucursal_listar' %}">Cancelar</a>
+        </form>
+
+    </div>
+   <br><br><br>
+  </div>
+
+{% endblock %}

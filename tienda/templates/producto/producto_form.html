@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% load materializecss %}
+
+{% block title %} Nuevo Producto {% endblock %}
+
+{% block content%}
+<div class="container">
+
+  <div class="center">
+    <h3> Crear producto</h3>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="row ">
+
+      <div class="col s12">
+        <div class="col s6">
+
+          <label for="nombre">Nombre</label>
+          {{ form.nombre }}
+        </div>
+        <div class="col s6">
+          <label for="tipo">Tipo</label>
+          {{ form.tipo }}
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <label for="descripcion">Descripción</label>
+        {{ form.descripcion }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="col s4">
+          <label for="precio">Precio</label>
+          {{ form.precio}}
+        </div>
+
+        
+      </div>
+    </div>
+    <br>
+    <div class="row center">
+
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Guardar</button>
+
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<!--Para heredar de la plantilla base el diseño de la pag-->
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load materializecss %}
+
+{% block title %} CREAR SUCURSAL{% endblock %}
+
+<!--Para cambiar el contenido que se encuentra en esta pag-->
+{% block content %}
+<div class="container">
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="row center">
+            <h1>Agregar nueva sucursal</h1>
+        </div>
+        
+
+        {{ form.nombreTienda|materializecss:'s6' }}
+        {{ form.direccion|materializecss:'s6' }}
+        {{ form.telefono|materializecss:'s6' }}
+        {{ form.correo|materializecss:'s6' }}
+        {{ form.encargado|materializecss:'s6' }}
+        {{ form.comuna|materializecss:'s6' }}
+        {{ form.ciudad|materializecss:'s6' }}
+
+        <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+                <i class="material-icons right">done</i>
+            </button>
+
+            <a class="btn waves-effect waves-light red" href="{% url 'sucursal_listar' %}">Cancelar
+                <i class="material-icons right">keyboard_backspace</i>
+            </a>
+
+        </div>
+
+        
+
+    </form>
+</div>
+
+{% endblock %}

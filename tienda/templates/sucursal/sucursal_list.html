@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% load materializecss %}
+
+{% block title %} LISTA DE SUCURSALES {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <div class="row center">
+        <h1>Lista de Sucursales</h1>
+    </div>
+    {% if request.user.is_superuser %}
+    <div class="row right">
+        <a class="btn waves-effect waves-light " href="{% url 'sucursal:sucursal_crear' %}">Nuevo
+            <i class="material-icons right">add</i>
+        </a>
+    </div>
+    {% endif %}
+    <br><br><br>
+
+    <div class="row ">
+
+        <div class="col s8">
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <td>Nombre</td>
+                        <td>Dirección</td>
+                        <td style="width: 250px;">Teléfono</td>
+                        <td>Correo</td>
+                        <td>Encarcado</td>
+                        <td>Comuna</td>
+                        <td>Ciudad</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if sucursales %}
+                    {% for sucursal in sucursales %}
+                    <tr>
+
+                        <td>{{ sucursal.nombreTienda }}</td>
+                        <td>{{ sucursal.direccion }}</td>
+                        <td>{{ sucursal.telefono }}</td>
+                        <td>{{ sucursal.correo }}</td>
+                        <td>{{ sucursal.encargado }}</td>
+                        <td>{{ sucursal.comuna }}</td>
+                        <td>{{ sucursal.ciudad }}</td>
+                        <td>
+                            <a class="btn waves-effect waves-light orange" href="{% url 'sucursal:sucursal_editar' sucursal.id %}">Editar</a>
+                            <a class="btn waves-effect waves-light red" href="{% url 'sucursal:sucursal_eliminar' sucursal.id %}">Eliminar</a>
+
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% else %}
+                    <h1>No hay registros de sucursales</h1>
+
+                    {% endif %}
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

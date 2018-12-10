@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+
+{% load materializecss %}
+
+{% block title %}Lista de productos{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row center"><h2>Lista de productos</h2></div>
+
+  <div class="row right"><a class="btn waves-effect waves-light" href="{% url 'producto:producto_crear' %}">Nuevo
+    <i class="material-icons right">add</i>
+  </a></div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+
+        <td>Nombre</td>
+        <td>Tipo</td>
+        <td>Descripción</td>
+        <td>Precio</td>
+        <td>Acciones</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% if productos %}
+      {% for producto in productos %}
+      <tr>
+
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.tipo }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>$ {{ producto.precio }}</td>
+        
+        <td>
+          <a class="btn waves-effect waves-light orange" href="{% url 'producto:producto_editar' producto.id %}">Editar</a>
+          <a class="btn waves-effect waves-light red" href="{% url 'producto:producto_eliminar' producto.id %}">Eliminar</a>
+
+
+        </td>
+      </tr>
+
+      {% endfor %}
+
+      {% else %}
+
+      <h1>No existen registros</h1>
+
+      {% endif %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}

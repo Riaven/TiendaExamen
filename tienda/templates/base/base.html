@@ -1,0 +1,91 @@
+{% load materializecss %}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %} ElectroTech {% endblock %} </title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %} " type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="{% url 'producto:index' %}" class="brand-logo">ElectroTech</a>
+      <ul class="right hide-on-med-and-down">
+          {% if user.is_authenticated %}
+          <li><a href="">Bienvenido {{request.user.username}}</a>  </li>
+          {% endif %}
+        {% if user.is_authenticated == False %} 
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+        {% if user.is_authenticated %} 
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Sucursales</a></li>
+        <li><a href="#">Ventas</a></li>
+        <li><a href="{% url 'registrar' %}">Usuarios</a></li>
+        <li><a href="{% url 'logout' %}">Salir</a></li>
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {% if user.is_authenticated == False %}
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+        {% if user.is_authenticated %} 
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Sucursales</a></li>
+        <li><a href="#">Ventas</a></li>
+        <li><a href="{% url 'registrar' %}">Usuarios</a></li>
+        <li><a href="#">Salir</a></li>
+        {% endif %}
+        
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+   {% block content %}{% endblock %}
+  
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Información de contacto</h5>
+          <p class="grey-text text-lighten-4">Mantengámonos conectados!</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contacto</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Facebook</a></li>
+            <li><a class="white-text" href="#!">Twitter</a></li>
+            <li><a class="white-text" href="#!">Instagram</a></li>
+            <li><a class="white-text" href="#!">+5695253597</a></li>
+            <li><a class="white-text" href="#!">info@ElectroTech.cl</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Derechos reservados <a class="brown-text text-lighten-3" href="">ElectroTech</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
+  </body>
+</html>
